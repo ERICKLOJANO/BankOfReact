@@ -2,52 +2,52 @@ import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import {Link} from 'react-router-dom';
 
-class LogIn extends Component {
+class Debits extends Component {
   constructor () {
     super()
     this.state = {
-      user: {
-        userName: '',
-        password: ''
+      inputCredits: {
+        amount: 0,
+        description: ''
       },
       redirect: false
     }
   }
 
   handleChange = (e) => {
-    const updatedUser = {...this.state.user}
+    const updatedAmount = {...this.state.inputCredits}
     const inputField = e.target.name
     const inputValue = e.target.value
-    updatedUser[inputField] = inputValue
+    updatedAmount[inputField] = inputValue
 
-    this.setState({user: updatedUser})
+    this.setState({inputCredits: (this.state.amount - updatedAmount)})
   }
 
   handleSubmit = (e) => {
-    e.preventDefault()
-    this.props.mockLogIn(this.state.user)
+    e.preventDefault();
+    this.props.mockDebits(this.state.inputCredits)
     this.setState({redirect: true})
   }
 
   render () {
     if (this.state.redirect) {
-      return (<Redirect to="/userProfile"/>)
+      return (<Redirect to="/"/>)
     }
 
     return (
       <div>
         <center>
-        <h1><u>Login</u></h1>
+        <h1><u>Add debits</u></h1>
           <form onSubmit={this.handleSubmit}>
             <div>
-              <label htmlFor="userName">Username: </label>
-              <input type="text" name="userName" onChange={this.handleChange} value={this.state.user.userName} />
+              <label htmlFor="amount">Amount: </label>
+              <input type="text" name="amount:" onChange={this.handleChange} value={this.state.amount} />
             </div>
             <div>
-              <label htmlFor="password">Password: </label>
-              <input type="password" name="password" />
+              <label htmlFor="description">Description: </label>
+              <input type="text" name="description" />
             </div>
-            <button>Log In</button>
+            <button>Add Debit</button>
           </form>
           <Link to="/userProfile">User Profile </Link>
           <Link to="/"> Home</Link>
@@ -58,4 +58,4 @@ class LogIn extends Component {
   }
 }
 
-export default LogIn
+export default Debits
