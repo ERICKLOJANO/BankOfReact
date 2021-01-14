@@ -30,9 +30,10 @@ class App extends Component {
     this.setState({currentUser: newUser})
   }
 
+  //used to update account balance from child component (debits/credits)
   mockDebits = (debitsInfo) => {
     const newAmount = {...this.state.account}
-    newAmount.accountBalance = debitsInfo.accountBalance
+    newAmount.accountBalance -= debitsInfo.amount
     this.setState({account: newAmount})
   }  
 
@@ -43,7 +44,7 @@ class App extends Component {
         <UserProfile userName={this.state.currentUser.userName} memberSince={this.state.currentUser.memberSince}  />
     );
     const LogInComponent = () => (<LogIn user={this.state.currentUser} mockLogIn={this.mockLogIn} {...this.props}/>)
-    const DebitsComponent = () => (<Debits inputCredits={this.state.account} mockDebits={this.mockDebits} {...this.props}/>);
+    const DebitsComponent = () => (<Debits mockDebits={this.mockDebits}/>);
     
     return (
         <Router>

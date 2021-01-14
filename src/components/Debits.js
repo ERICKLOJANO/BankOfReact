@@ -14,15 +14,15 @@ class Debits extends Component {
     }
   }
 
+  //handle input field change for value
   handleChange = (e) => {
     const updatedAmount = {...this.state.inputCredits}
-    const inputField = e.target.name
     const inputValue = e.target.value
-    updatedAmount[inputField] = inputValue
-
-    this.setState({inputCredits: (this.state.amount - updatedAmount)})
+    updatedAmount.amount = Number(inputValue)
+    this.setState({inputCredits: updatedAmount})
   }
 
+  //submit new debit to app.js and redirect back to home
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.mockDebits(this.state.inputCredits)
