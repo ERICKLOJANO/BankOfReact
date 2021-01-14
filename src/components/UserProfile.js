@@ -11,7 +11,8 @@ class UserProfile extends Component {
             <div>Member Since: {this.props.memberSince}</div>
             <Link to="/">Home </Link>
             <Link to = "/logIn"> Login</Link>
-            <Link to="/debits"> Debits</Link> 
+            <Link to="/debits"> Debits</Link>
+            <Link to="/credits"> Credits</Link>
           </center>
         </div>
     );
