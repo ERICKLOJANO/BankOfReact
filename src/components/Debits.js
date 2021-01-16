@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import {Link} from 'react-router-dom';
+import AccountActivty from './AccountActivity'
 
 class Debits extends Component {
   constructor () {
     super()
     this.state = {
       inputDebits: {
-        amountDeb: 10,
+        amountDeb: 0,
         descriptionDeb: ''
       },
       redirect: false
@@ -15,7 +16,7 @@ class Debits extends Component {
   }
 
   //handle input field change for value
-  handleChange = (e) => {
+  handleValueChange = (e) => {
     const updatedAmount = {...this.state.inputDebits}
     const inputValue = e.target.value
     updatedAmount.amountDeb = Number(inputValue)
@@ -23,10 +24,25 @@ class Debits extends Component {
     this.setState({inputDebits: updatedAmount})
   }
 
+  //Handle change for description
+  handleDescriptionChange = (e) => {
+    const updatedDescription = {...this.state.inputDebits}
+    const inputValue = e.target.value
+    updatedDescription.descriptionDeb = inputValue
+    console.log(inputValue);
+    this.setState({inputDebits: updatedDescription})
+  }
+
   //submit new debit to app.js and redirect back to home
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.mockDebits(this.state.inputDebits)
+    this.props.updateDebits({
+      description: this.state.inputDebits.descriptionDeb,
+      amount: this.state.inputDebits.amountDeb,
+      date: new Date().toDateString()
+    })
+    console.log(this.state.inputDebits)
     this.setState({redirect: true})
   }
 
@@ -42,18 +58,23 @@ class Debits extends Component {
           <form onSubmit={this.handleSubmit}>
             <div>
               <label htmlFor="amountDeb">Amount: </label>
-              <input type="text" name="amountDeb:" onChange={this.handleChange} value={this.state.amount} />
+              <input type="text" name="amountDeb:" onChange={this.handleValueChange} value={this.state.amount} />
             </div>
             <div>
               <label htmlFor="descriptionDeb">Description: </label>
-              <input type="text" name="descriptionDeb" />
+              <input type="text" name="descriptionDeb" onChange = {this.handleDescriptionChange} />
             </div>
             <button>Add Debit</button>
           </form>
           <Link to="/userProfile">User Profile </Link>
           <Link to="/"> Home</Link>
-          <Link to="/credits"> Credits</Link> 
+          <Link to="/Credits"> Credits</Link> 
           <Link to = "/logIn"> Login</Link>
+          {
+            this.props.debits.map((obj, index) => {
+              return <AccountActivty description = {obj.description} amount = {obj.amount} date = {obj.date} key = {index} />
+            })
+          }
         </center>
       </div>
     )
