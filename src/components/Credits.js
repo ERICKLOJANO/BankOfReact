@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import {Link} from 'react-router-dom';
+import AccountActivty from './AccountActivity'
 
 class Credits extends Component {
   constructor () {
