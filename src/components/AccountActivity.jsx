@@ -6,7 +6,7 @@ class AccountActivity extends React.Component {
         return (
             <div className = 'display'>
                 <h3>{this.props.description}</h3>
-                <p>Amount: {this.props.amount}</p>
+                <p>Amount: ${this.props.amount}</p>
                 <p>Date: {this.props.date}</p>
             </div>
         )

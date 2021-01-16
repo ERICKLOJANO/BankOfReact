@@ -49,10 +49,10 @@ class LogIn extends Component {
             </div>
             <button>Log In</button>
           </form>
-          <Link to="/userProfile">User Profile </Link>
-          <Link to="/"> Home</Link>
-          <Link to="/debits"> Debits</Link>
-          <Link to="/credits"> Credits</Link> 
+          <Link className = 'link' to="/userProfile">User Profile </Link>
+          <Link className = 'link' to="/"> Home</Link>
+          <Link className = 'link' to="/debits"> Debits</Link>
+          <Link className = 'link' to="/credits"> Credits</Link> 
         </center>
       </div>
     )

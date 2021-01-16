@@ -1,3 +1,7 @@
+* {
+  background-color: #DCDCDC;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -10,4 +14,15 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.link {
+  padding: 0px 10px 0px 10px;
+  text-decoration: none;
+}
+
+.display {
+  padding-top: 10px;
+  width: 300px;
+  border: 1px solid black;
 }
