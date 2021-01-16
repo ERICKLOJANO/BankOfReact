@@ -54,6 +54,7 @@ class App extends Component {
   mockDebits = (debitsInfo) => {
     let newAmount = this.state.accountBalance
     newAmount -= debitsInfo.amountDeb;
+    newAmount = Math.round(newAmount * 100) / 100
     this.setState({accountBalance: newAmount})
   }  
 
