@@ -23,6 +23,7 @@ class App extends Component {
     };
   }
 
+  //fetch debits and credits data to display 
   componentDidMount = () => {
     fetch('https://moj-api.herokuapp.com/debits')
     .then((results) => {
@@ -62,6 +63,7 @@ class App extends Component {
     this.setState({accountBalance: newAmount})
   }
 
+  //update list of credits/debits from child component
   updateCredits = (newCredit) => {
     let newCredits = this.state.credits
     newCredits = [...newCredits, newCredit]

@@ -24,6 +24,7 @@ class Debits extends Component {
     this.setState({inputDebits: updatedAmount})
   }
 
+  //Handle change for description
   handleDescriptionChange = (e) => {
     const updatedDescription = {...this.state.inputDebits}
     const inputValue = e.target.value

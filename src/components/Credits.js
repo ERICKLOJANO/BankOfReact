@@ -23,6 +23,8 @@ class Credits extends Component {
     console.log(inputValue);
     this.setState({inputCredits: updatedCredAmount})
   }
+
+  //handle change for description
   handleDescriptionChange = (e) => {
     const updatedDescription = {...this.state.inputCredits}
     const inputValue = e.target.value
