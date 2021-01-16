@@ -15,6 +15,8 @@ class App extends Component {
       account: {
         accountBalance: 20,
         des: '',
+        debits: [],
+        credits: []
       }, 
       currentUser: {
         userName: 'bob_loblaw',
@@ -23,7 +25,28 @@ class App extends Component {
     };
   }
 
-
+  componentDidMount = () => {
+    fetch('https://moj-api.herokuapp.com/debits')
+    .then((results) => {
+      return results.json()
+    })
+    .then((response) => {
+      const updateAccount = {...this.state.account}
+      updateAccount.debits = response
+      this.setState({account: updateAccount})
+    })
+    .catch((error) => console.log(error))
+    fetch('https://moj-api.herokuapp.com/credits')
+    .then((results) => {
+      return results.json()
+    })
+    .then((response) => {
+      const updateAccount = {...this.state.account}
+      updateAccount.credits = response
+      this.setState({account: updateAccount})
+    })
+    .catch((error) => console.log(error))
+  }
   mockLogIn = (logInInfo) => {
     const newUser = {...this.state.currentUser}
     newUser.userName = logInInfo.userName
@@ -41,6 +64,20 @@ class App extends Component {
     const newVal = {...this.state.account}
     newVal.accountBalance += creditsInfo.amountCred;
     this.setState({account: newVal})
+  }
+
+  updateCredits = (newCredit) => {
+    const newCredits = {...this.state.account}
+    newCredits.credits = [...newCredits.credits, newCredit]
+    this.setState({account: newCredits})
+
+  }  
+
+  updateDebits = (newDebit) => {
+    const newDebits = {...this.state.account}
+    newDebits.debits = [...newDebits.debits, newDebit]
+    this.setState({account: newDebit})
+
   }  
 
   render() {
@@ -50,8 +87,10 @@ class App extends Component {
         <UserProfile userName={this.state.currentUser.userName} memberSince={this.state.currentUser.memberSince}  />
     );
     const LogInComponent = () => (<LogIn user={this.state.currentUser} mockLogIn={this.mockLogIn} {...this.props}/>)
-    const DebitsComponent = () => (<Debits mockDebits={this.mockDebits}/>);
-    const CreditsComponent = () => (<Credits mockCredits={this.mockCredits}/>);
+    const DebitsComponent = () => (<Debits mockDebits={this.mockDebits} debits = {this.state.account.debits} updateDebits = {this.updateDebits} />);
+    const CreditsComponent = () => (<Credits mockCredits={this.mockCredits} credits = {this.state.account.credits} updateCredits = {this.updateCredits} />);
+    console.log(this.state.account.debits)
+    console.log(this.state.account.credits)
 
     return (
         <Router>
