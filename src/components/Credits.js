@@ -8,7 +8,7 @@ class Credits extends Component {
     super()
     this.state = {
       inputCredits: {
-        amountCred: 10,
+        amountCred: 0,
         descriptionCred: ''
       },
       redirect: false
@@ -36,8 +36,8 @@ class Credits extends Component {
     e.preventDefault();
     this.props.mockCredits(this.state.inputCredits)
     this.props.updateCredits({
-      description: this.state.descriptionCred,
-      amount: this.state.amountCred,
+      description: this.state.inputCredits.descriptionCred,
+      amount: this.state.inputCredits.amountCred,
       date: new Date().toDateString()
     })
     this.setState({redirect: true})

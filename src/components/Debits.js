@@ -8,7 +8,7 @@ class Debits extends Component {
     super()
     this.state = {
       inputDebits: {
-        amountDeb: 10,
+        amountDeb: 0,
         descriptionDeb: ''
       },
       redirect: false
@@ -29,7 +29,7 @@ class Debits extends Component {
     const inputValue = e.target.value
     updatedDescription.descriptionDeb = inputValue
     console.log(inputValue);
-    this.setState({inputCredits: updatedDescription})
+    this.setState({inputDebits: updatedDescription})
   }
 
   //submit new debit to app.js and redirect back to home
@@ -37,10 +37,11 @@ class Debits extends Component {
     e.preventDefault();
     this.props.mockDebits(this.state.inputDebits)
     this.props.updateDebits({
-      description: this.state.inputDebits.descriptionCred,
-      amount: this.state.inputDebits.amountCred,
+      description: this.state.inputDebits.descriptionDeb,
+      amount: this.state.inputDebits.amountDeb,
       date: new Date().toDateString()
     })
+    console.log(this.state.inputDebits)
     this.setState({redirect: true})
   }
 
@@ -66,7 +67,7 @@ class Debits extends Component {
           </form>
           <Link to="/userProfile">User Profile </Link>
           <Link to="/"> Home</Link>
-          <Link to="/Debits"> Credits</Link> 
+          <Link to="/Credits"> Credits</Link> 
           <Link to = "/logIn"> Login</Link>
           {
             this.props.debits.map((obj, index) => {
