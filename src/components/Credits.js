@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { Redirect } from 'react-router-dom'
 import {Link} from 'react-router-dom';
 import AccountActivty from './AccountActivity'
+import AccountBalance from './AccountBalance'
 
 class Credits extends Component {
   constructor () {
@@ -11,7 +11,6 @@ class Credits extends Component {
         amountCred: 0,
         descriptionCred: ''
       },
-      redirect: false
     }
   }
 
@@ -46,13 +45,11 @@ class Credits extends Component {
   }
 
   render () {
-    if (this.state.redirect) {
-      return (<Redirect to="/"/>)
-    }
 
     return (
       <div>
         <center>
+        <h2><AccountBalance accountBalance={this.props.accountBalance}/></h2>
         <h1><u>Add credits</u></h1>
           <form onSubmit={this.handleSubmit}>
             <div>

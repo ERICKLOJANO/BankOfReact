@@ -54,6 +54,7 @@ class App extends Component {
   mockDebits = (debitsInfo) => {
     let newAmount = this.state.accountBalance
     newAmount -= debitsInfo.amountDeb;
+    newAmount = Math.round(newAmount * 100) / 100
     this.setState({accountBalance: newAmount})
   }  
 
@@ -85,8 +86,8 @@ class App extends Component {
         <UserProfile userName={this.state.currentUser.userName} memberSince={this.state.currentUser.memberSince}  />
     );
     const LogInComponent = () => (<LogIn user={this.state.currentUser} mockLogIn={this.mockLogIn} {...this.props}/>)
-    const DebitsComponent = () => (<Debits mockDebits={this.mockDebits} debits = {this.state.debits} updateDebits = {this.updateDebits} />);
-    const CreditsComponent = () => (<Credits mockCredits={this.mockCredits} credits = {this.state.credits} updateCredits = {this.updateCredits} />);
+    const DebitsComponent = () => (<Debits mockDebits={this.mockDebits} accountBalance={this.state.accountBalance} debits = {this.state.debits} updateDebits = {this.updateDebits} />);
+    const CreditsComponent = () => (<Credits mockCredits={this.mockCredits} accountBalance={this.state.accountBalance} credits = {this.state.credits} updateCredits = {this.updateCredits} />);
 
     return (
         <Router>
