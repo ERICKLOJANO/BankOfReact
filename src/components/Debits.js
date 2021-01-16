@@ -63,10 +63,10 @@ class Debits extends Component {
             </div>
             <button>Add Debit</button>
           </form>
-          <Link to="/userProfile">User Profile </Link>
-          <Link to="/"> Home</Link>
-          <Link to="/Credits"> Credits</Link> 
-          <Link to = "/logIn"> Login</Link>
+          <Link className = 'link' to="/userProfile">User Profile </Link>
+          <Link className = 'link' to="/"> Home</Link>
+          <Link className = 'link' to="/Credits"> Credits</Link> 
+          <Link className = 'link' to = "/logIn"> Login</Link>
           {
             this.props.debits.map((obj, index) => {
               return <AccountActivty description = {obj.description} amount = {obj.amount} date = {obj.date} key = {index} />

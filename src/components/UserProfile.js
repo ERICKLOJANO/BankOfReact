@@ -9,10 +9,10 @@ class UserProfile extends Component {
             <h1>User Profile</h1>
             <div>Username: {this.props.userName}</div>
             <div>Member Since: {this.props.memberSince}</div>
-            <Link to="/">Home </Link>
-            <Link to = "/logIn"> Login</Link>
-            <Link to="/debits"> Debits</Link>
-            <Link to="/credits"> Credits</Link>
+            <Link className = 'link' to="/">Home </Link>
+            <Link className = 'link' to = "/logIn"> Login</Link>
+            <Link className = 'link' to="/debits"> Debits</Link>
+            <Link className = 'link' to="/credits"> Credits</Link>
           </center>
         </div>
     );
