@@ -15,7 +15,7 @@ class App extends Component {
         accountBalance: 20,
         des: '',
         debits: [],
-        credits: [], 
+        credits: [],
       currentUser: {
         userName: 'bob_loblaw',
         memberSince: '08/23/99',
@@ -23,7 +23,7 @@ class App extends Component {
     };
   }
 
-  //fetch debits and credits data to display 
+  //fetch debits and credits data to display
   componentDidMount = () => {
     fetch('https://moj-api.herokuapp.com/debits')
     .then((results) => {
@@ -56,7 +56,7 @@ class App extends Component {
     newAmount -= debitsInfo.amountDeb;
     newAmount = Math.round(newAmount * 100) / 100
     this.setState({accountBalance: newAmount})
-  }  
+  }
 
   mockCredits = (creditsInfo) => {
     let newAmount = this.state.accountBalance
@@ -70,17 +70,17 @@ class App extends Component {
     newCredits = [...newCredits, newCredit]
     this.setState({credits: newCredits})
 
-  }  
+  }
 
   updateDebits = (newDebit) => {
     let newDebits = this.state.debits
     newDebits = [...newDebits, newDebit]
     this.setState({debits: newDebits})
 
-  }  
+  }
 
   render() {
-    
+
     const HomeComponent = () => (<Home accountBalance={this.state.accountBalance}/>);
     const UserProfileComponent = () => (
         <UserProfile userName={this.state.currentUser.userName} memberSince={this.state.currentUser.memberSince}  />
@@ -90,7 +90,7 @@ class App extends Component {
     const CreditsComponent = () => (<Credits mockCredits={this.mockCredits} accountBalance={this.state.accountBalance} credits = {this.state.credits} updateCredits = {this.updateCredits} />);
 
     return (
-        <Router>
+        <Router basename = {process.env.PUBLIC_URL}>
           <div className="App">
            <Switch>
             <Route exact path="/" render={HomeComponent}/>
